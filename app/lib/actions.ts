@@ -38,6 +38,12 @@ export async function createInvoice(formData: FormData) {
             message: 'Database Error: Failed to Create Invoice.',
         };
     }
+    await sql`
+    INSERT INTO invoices (customer_id, amount, status, date)
+    VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
+    `;
+    console.log(`[createInvoice] -  invoice inserted`)
+    console.table(rawFormData);
 
     // Revalidate cache at side client and redirect.
     revalidatePath('/dashboard/invoices');
@@ -85,3 +91,5 @@ export async function deleteInvoice(id: string) {
 
     revalidatePath('/dashboard/invoices');
 }
+ 
+
