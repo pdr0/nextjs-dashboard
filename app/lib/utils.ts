@@ -67,3 +67,7 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     totalPages,
   ];
 };
+
+export const typeChecker = (obj : any): string => {
+  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+}
