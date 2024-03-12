@@ -10,6 +10,13 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
+import { resolve } from 'path';
+
+export async function logger<Type>(message: Type): Promise<Type> {
+  console.table(message);
+  return await new Promise((resolve, reject) => setTimeout(resolve, 1000))
+  
+}
 
 export async function fetchRevenue() {
   noStore();
